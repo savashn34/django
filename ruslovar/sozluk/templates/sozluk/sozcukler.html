@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block keyword %}заимствования{% endblock %}
+
+{% block li %}
+        li {
+            list-style-type: none;
+            padding: 5px;
+            color: white;
+            font-size:x-large;
+        }
+{% endblock %}
+
+{% block content %}
+
+<div class="govde" style="text-align: left; font-size: 21px; width: fit-content; margin-left: 15%; margin-right: 10%; margin-top: 200px;">
+
+    {% for baslik in basliklar %}
+        {% if icerikler.slug == slug %}
+            <h3 style="font-size: xx-large;">{{ baslik.ses|title }}</h3><br>
+        {% endif %}
+    {% endfor %}
+
+    <ul>
+        {% for icerik in icerikler %}
+
+            <li>
+                <a href="{% url 'icerik_baglanti' icerik.slug %}">
+                    {{ icerik.sozcuk }}
+                </a>
+            </li>
+
+        {% endfor %}
+    </ul>
+
+</div>
+
+{% endblock %}

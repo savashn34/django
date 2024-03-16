@@ -1,0 +1,15 @@
+{% for lan in diller  %}
+
+    <a href="{% url 'dillere_gore_sozcukler' lan.slug %}" style="color: #007bff;"> 
+        {{ lan.dil }}
+    </a>
+
+{% endfor %}
+
+{% comment %}
+
+for döngüsü içindeki 'diller' views.py'de tanımlanmış olan Diller.objects.all() betiğidir. dolayısıyla diller çizelgesi altındaki tüm veriler 'lan' takma adıyla aranır.
+döngü içindeki 'lan' verisi, çizelgedeki bütün verileri tarar. {{ lan.dil }} komutu; lan verisini Diller çizelgesinin 'dil' bölümünde bulunan verilerle sınırlar.
+url bölümündeyse önce tanıtılan url verilir. lan.slug ise Diller çizelgesinin slug bölümündeki verileri taratır.
+
+{% endcomment %}

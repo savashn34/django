@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>
+        {% block title %} {% endblock %} | Русловарь
+    </title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Словарь Защиты Русского Языка">
+    <meta name="keywords" content="{% block keyword %}{% endblock %}, русский, язык, синонимы, исконно, русские, слова">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/rsbelirtke.png' %}">
+    <style>
+
+        .search-form {
+            width: 450px;
+            padding: 20px;
+        }
+        
+        .search-container {
+            width: 100%; /* Yüzde olarak genişlik */
+            max-width: 800px; /* Maksimum genişlik */
+            margin-top: 10px;
+            display: flex;
+        }
+        
+        .search-input {
+            width: 300px;
+            padding: 15px;
+            margin-right: -2px;
+            border: none;
+            border-radius: 25px 0 0 25px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-button {
+            width: 100px; /* Sabit genişlik */
+            padding: 15px;
+            margin-left: -2px;
+            border: none;
+            border-radius: 0 25px 25px 0;
+            background-color: black;
+            /* background-color: #007bff; */
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+
+        {% block li %}{% endblock %}
+    </style>
+</head>
+<body>
+
+    <header>
+        
+        <div>
+            <a href="{% url 'baslangic' %}" class="baglanti"><h1 style="font-size: 50px; text-shadow: 2px 2px 20px whitesmoke; color:black; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: 900; margin-top: 50px;">РУСЛОВАРЬ</h1></a>
+        </div>
+            <br>
+        <div>
+            <h2 style="font-size: 25px; color: rgb(201, 201, 201); font-family: initial;">Словарь Заимствований в Русском Языке</h2>
+        </div>
+        <div style="text-align: center; display: inline-block;">
+            <div class="search-container">
+                <form class="search-form" method="post" action="{% url 'search' %}">
+                    {% csrf_token %}
+                    <input class="search-input" type="text" name="query" placeholder="Ищите слово...">
+                    <button class="search-button" type="submit">Поиск</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="baslik" style="margin: auto;
+            margin-top: 0;
+            margin-bottom: 50px;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            font-size: 21px;
+            font-weight:600;
+            width: fit-content;
+            letter-spacing: 11px;">
+
+            {% for damga in sesler %}
+                <a href="{% url 'seslere_gore_sozcukler' damga.slug %}" class="baglanti">
+                    {{ damga.ses|title }}
+                </a>
+            {% endfor %}
+
+        </div><br>
+        
+    </header>
+
+{% block content %}
+{% endblock %}
+
+    <footer style="height: 200px;
+    margin-top: 300px;">
+        <div>
+            <p style="margin-top: 70px;">ruslovar.com</p>
+                <br><br>
+            <p>Все правы защищены. © 2024</p>
+            <p>Саваш Шахин</p>
+                <br><br>
+            <p><a href="{% url 'baslangic' %}">Главное</a> | <a href="{% url 'bilgilendirme' %}">О словаре</a> | <a href="mailto:pismo@ruslovar.com">Общение</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('search-form');
+            const input = document.getElementById('search-input');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                const query = input.value.trim();
+                if (query) {
+                    window.location.href = "{% url 'search' %}" + query;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

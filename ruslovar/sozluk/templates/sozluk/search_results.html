@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}{{ sozcuk }}{% endblock %}
+
+{% block keyword %}{{ sozcuk }}{% endblock %}
+
+{% block content %}
+
+    {% if results %}
+
+        {% for sonuc in results %}
+            <div class="icerik" style="text-align: left; font-size: 21px; width: fit-content; margin-left: 10%; margin-right: 10%; margin-top: 200px;">
+
+                <h4 style="font-size: xx-large; font-weight: bold;">{{ sonuc.sozcuk }}</h4><br>
+            
+                <i>{{ sonuc.dil }} {{ sonuc.koken }}</i><br><br>
+            
+                {{ sonuc.anlam }}<br><br>
+            
+                <p style="font-weight: bold;">Тождественное слово Русского происхождения:</p>
+                
+                {{ sonuc.karsilik }}
+            </div>
+        {% endfor %}
+
+    {% else %}
+        <div class="icerik" style="text-align: left; font-size: 21px; width: fit-content; margin-left: 10%; margin-right: 10%; margin-top: 200px;">
+            <p>По данному запросу ничего не найдено.</p>
+        </div>
+    {% endif %}
+
+{% endblock %}

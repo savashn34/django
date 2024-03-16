@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %} Словарь Заимствований в Русском Языке {% endblock %}
+
+{% block keyword %}заимствования{% endblock %}
+
+{% block content %}
+
+<div class="icerik" style="text-align: left; font-size: 21px; width: fit-content; margin-left: 10%; margin-right: 10%; margin-top: 200px;">
+    <h3 style="font-size: x-large; font-weight: bold;">Введение</h3><br>
+        <h4>В настоящее время в этом словаре находятся более 1000 заимствованных слов. В словаре нет личных имен, названий мест, и старых слов, которые уже были потеряны из Русского современного письменного языка.</h4>
+            <br>
+        <h4>Пожалуйста не забудьтесь, что тот словарь пока в степени развития. Поэтому очевидно то, что в настоящее время тот словарь не такой достаточный и ещё много заимствованные слова отсутствуют.</h4>
+            <br>
+        <h4>В словаре нет только тождеслов, а также есть близкие по смыслу слова.</h4>
+</div>
+
+<div class="icerik" style="text-align: left; font-size: 21px; width: fit-content; margin-left: 10%; margin-right: 10%; margin-top: 50px;">
+    <h5>Еще можно исследовать по языкам:</h5>
+    <hr>
+    {% include 'partials/_diller.html'%}
+</div>
+
+{% endblock %}

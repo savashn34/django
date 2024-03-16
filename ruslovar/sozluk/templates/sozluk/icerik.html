@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}{{ sozcuk }}{% endblock %}
+
+{% block keyword %}{{ sozcuk }}{% endblock %}
+
+{% block content %}
+
+    <div class="icerik" style="text-align: left; font-size: 21px; width: fit-content; margin-left: 10%; margin-right: 10%; margin-top: 200px;">
+
+        <h4 style="font-size: xx-large; font-weight: bold;">{{ sozcuk.sozcuk }}</h4><br>
+
+        <h5 style="font-style: italic;">{{ sozcuk.dil }} {{ sozcuk.koken }}</h5><br>
+
+        {{ sozcuk.anlam }}<br><br>
+
+        <p style="font-weight: bold;">Тождественное слово Русского происхождения:</p>
+        <hr>
+        
+        {{ sozcuk.karsilik }}
+
+    </div>
+
+{% endblock %}
