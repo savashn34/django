@@ -23,6 +23,12 @@
         {% endif %}
     {% endfor %}
 
+    {% for dil_baslik in dil_basliklari %}
+        {% if icerikler.slug == slug %}
+            <h3 style="font-size: xx-large;">Слова заимствованные от {{ dil_baslik.dil|title }}</h3><hr><br>
+        {% endif %}
+    {% endfor %}
+
     <ul>
         {% for icerik in icerikler %}
 

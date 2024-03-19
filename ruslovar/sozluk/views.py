@@ -79,7 +79,8 @@ def seslere_gore_sozcukler(request, slug):
 def dillere_gore_sozcukler(request, slug):
     context = {
         "icerikler": Sozcukler.objects.filter(dil__slug=slug),
+        "sesler": Sesler.objects.all(),
         "diller": Diller.objects.all(),
-        "sesler": Sesler.objects.all()
+        "dil_basliklari": Diller.objects.filter(slug=slug)
     }
     return render(request, "sozluk/sozcukler.html", context)
